@@ -1,5 +1,6 @@
 package baac.baacrestaurant;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -18,9 +19,21 @@ public class MainActivity extends AppCompatActivity {
         createAndConnect();
 
         //Tester Add New Value
-        testerAdd();
+        //testerAdd();
 
+        //Delete All SQLite
+        deleteAllSQLite();
+        //synchronize json to SQLite
+        //syn
     }   //Main method
+
+    private void deleteAllSQLite() {
+
+        SQLiteDatabase objSQLiteDatabase = openOrCreateDatabase("BAAC.db", MODE_PRIVATE, null);
+        objSQLiteDatabase.delete("userTABLE", null, null);
+        objSQLiteDatabase.delete("foodTABLE", null, null);
+
+    }
 
     private void testerAdd() {
         objUserTABLE.addNewUser("testUser","testPassword","ทดสอบชื่อภาษาไทย");
